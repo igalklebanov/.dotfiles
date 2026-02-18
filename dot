@@ -345,7 +345,12 @@ setup_raycast() {
 
     print_step "Setting up Raycast"
 
-    open -a "Raycast"
+    local onboarding_completed
+    onboarding_completed=$(defaults read com.raycast.macos onboardingCompleted 2>/dev/null)
+
+    if [[ "$onboarding_completed" != "1" ]]; then
+        open -a "Raycast"
+    fi
 
     local spotlight_status
     spotlight_status=$(/usr/libexec/PlistBuddy -c "Print :AppleSymbolicHotKeys:64:enabled" ~/Library/Preferences/com.apple.symbolichotkeys.plist 2>/dev/null)

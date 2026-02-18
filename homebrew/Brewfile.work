@@ -1,0 +1,21 @@
+# set arguments for all 'brew install --cask' commands
+# Note: require_sha disabled to prevent installation failures
+cask_args appdir: "/Applications"
+
+#brew "1password-cli" # secret sharing, but cool kid.
+brew "cloudflared" # free public URLs for demos/preview environments.
+brew "doppler" # secret manager. hope workplaces use it.
+
+#cask "1password" # secret sharing, 2fa.
+#cask "discord" # spam spam spam, but cool.
+cask "dropbox" # share trade secrets, but terrible.
+cask "figma" # in case there's a "designer".
+cask "google-drive" # share trade secrets.
+cask "linear-linear" # hoping workplaces use it.
+cask "loom" # video spam spam spam.
+#cask "microsoft-teams" # spam spam spam, but terrible.
+cask "miro" # in case there's "retro" or "brainstorming".
+cask "notion" # in case there's a "product".
+cask "pagerduty" # in case there's "users".
+cask "slack" # spam spam spam.
+cask "tailscale-app" # tunnel into infra.

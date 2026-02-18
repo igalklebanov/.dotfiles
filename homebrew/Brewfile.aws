@@ -1,0 +1,21 @@
+# set arguments for all 'brew install --cask' commands
+# Note: require_sha disabled to prevent installation failures
+cask_args appdir: "/Applications"
+
+brew "aws-iam-authenticator" # AWS<->`kubectl` credentials bridge.
+brew "awscli" # AWS CLI - used in most workplaces.
+brew "awscli-local" # AWS CLI, but for `localstack`.
+brew "aws-vault" # AWS secret manager.
+brew "cloud-nuke" # nuke test resources. `aws-nuke` alternative.
+brew "granted" # stay authenticated to multiple accounts.
+brew "huseyinbabal/tap/taws" # AWS TUI.
+brew "iam-policy-json-to-terraform" # json to iac transformer.
+brew "localstack" # mini AWS for development/testing.
+brew "lucagrulla/tap/cw" # CloudWatch CLI, good for tailing.
+brew "sqsmover" # read/move SQS messages around.
+brew "steampipe" # query AWS resources.
+brew "terraform-local" # Terraform CLI, but for `localstack`.
+
+cask "dynobase" # DynamoDB GUI.
+cask "dynamodb-local"  # DynamoDB emulator, might be used instead of `localstack`.
+cask "temurin"         # Java 17+ for `dynamodb-local`.

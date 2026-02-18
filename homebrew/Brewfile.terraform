@@ -1,0 +1,13 @@
+# set arguments for all 'brew install --cask' commands
+# Note: require_sha disabled to prevent installation failures
+cask_args appdir: "/Applications"
+
+brew "graphviz" # resource graph visualizations.
+brew "infracost" # cloud billing change checker.
+brew "pluto" # finds deprecated k8s versions in HCL.
+#brew "terraform-docs" # generate docs for modules.
+brew "tenv" # `terraform`/`opentofu`/`terragrunt` version manager.
+brew "terraformer" # turn click-ops into HCL.
+brew "tf-summarize" # `terraform plan` summarizer.
+brew "tflint" # linter.
+brew "trivy" # security auditor.

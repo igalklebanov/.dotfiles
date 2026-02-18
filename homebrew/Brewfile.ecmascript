@@ -1,0 +1,8 @@
+# set arguments for all 'brew install --cask' commands
+# Note: require_sha disabled to prevent installation failures
+cask_args appdir: "/Applications"
+
+brew "corepack" # package manager manager.
+brew "deno" # node.js compatible runtime.
+brew "fnm" # node.js version manager.
+brew "oven-sh/bun/bun" # node.js compatible runtime.

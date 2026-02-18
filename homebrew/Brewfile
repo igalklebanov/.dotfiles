@@ -1,0 +1,64 @@
+# set arguments for all 'brew install --cask' commands
+# Note: require_sha disabled to prevent installation failures
+cask_args appdir: "/Applications"
+
+brew "age" # encryption.
+brew "bat" # modern `cat` replacement.
+brew "bottom" # system monitoring TUI.
+brew "coreutils" # GNU versions of tools macOS ships BSD versions for.
+brew "direnv" # load envars in terminal.
+#brew "docker" # just the CLI.
+brew "doggo" # modern `dig` replacement. test DNS records.
+brew "dust" # disk usage analyzer.
+brew "eza" # modern `ls` + `tree` replacement.
+brew "fd" # modern `find` replacement.
+brew "fx" # interactive JSON viewer.
+brew "fzf" # fuzzy finder.
+brew "gh" # GitHub official CLI.
+brew "git" # in linus we trust.
+brew "git-delta" # better Git diffs.
+brew "hyperfine" # benchmark scripts.
+brew "jq" # query JSON objects.
+brew "just" # modern command runner.
+brew "lazygit" # Git TUI.
+brew "ripgrep" # find string patterns.
+brew "shellcheck" # shell script linter.
+brew "starship" # prompt.
+brew "stow" # dot file/symlink manager.
+brew "tokei" # code stats.
+brew "vivid" # `eza` themes.
+brew "xh" # modern `curl` alternative.
+brew "yq" # like `jq` for YAML.
+brew "zoxide" # modern `cd` replacement.
+
+cask "font-jetbrains-mono-nerd-font" # font for `ghostty` for ligatures and proper icons.
+
+cask "1password" # auth manager.
+cask "1password-cli" # auth manager CLI.
+cask "alt-tab" # windows-style window switching.
+cask "dash" # offline documentation (MCP).
+cask "devutils" # offline developer utils.
+cask "discord" # open-source community communication.
+cask "ghostty" # terminal
+cask "gitkraken" # favorite Git GUI
+cask "google-chrome" # internet browser monopoly.
+cask "hammerspoon" # macOS scripting.
+cask "iina" # media player.
+cask "jordanbaird-ice" # menu bar icon hider.
+cask "monodraw" # draw ascii diagrams.
+cask "ngrok" # test webhooks.
+cask "obsidian" # personal note taking.
+cask "orbstack" # docker desktop alternative.
+cask "pearcleaner" # nuke apps.
+cask "proxyman" # intercept and inspect traffic.
+cask "raycast" # one stop shop.
+cask "scroll-reverser" # keep natural scroll for trackpad only.
+cask "shottr" # screenshots.
+cask "stats" # system monitoring in the menu bar.
+cask "tableplus" # database GUI.
+cask "tailscale-app" # tunneling for private access.
+cask "telegram" # whatsapp but for cool kids and terrorists.
+cask "visual-studio-code" # it's like cursor/zed but for boomers like me.
+cask "x" # doom scrolling and demoralization.
+cask "yaak" # postman alternative.
+cask "whatsapp" # real life spam.

@@ -1,0 +1,11 @@
+# set arguments for all 'brew install --cask' commands
+# Note: require_sha disabled to prevent installation failures
+cask_args appdir: "/Applications"
+
+brew "helm"
+brew "k9s" # k8s TUI.
+#brew "kdash" # `k9s` alternative.
+brew "kubectl" # kubernetes CLI.
+brew "kubectx" # switch contexts - clusters, namespaces, etc.
+brew "kustomize"
+brew "stern" # tail like a god.

@@ -311,8 +311,17 @@ stow_dotfiles() {
     done < <(find "${HOME_DIR}" -type f -print0)
     
     if [[ ${#files_to_backup[@]} -gt 0 ]]; then
-        print_warning "The following files will be replaced:"
-        printf "  %s\n" "${files_to_backup[@]}"
+        print_warning "The following paths will be replaced:"
+        local display_files=()
+        for f in "${files_to_backup[@]}"; do
+            if [[ "$f" == ".config/"*/* ]]; then
+                local subdir="${f#*/}"
+                display_files+=(".config/${subdir%%/*}/*")
+            else
+                display_files+=("$f")
+            fi
+        done
+        printf "  %s\n" "${display_files[@]}" | sort -u
         
         if confirm "Create backups of existing files?" "y"; then
             mkdir -p "$backup_dir"

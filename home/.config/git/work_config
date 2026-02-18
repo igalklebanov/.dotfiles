@@ -1,4 +1,4 @@
 [user]
-	email = "dillon@cloudflare.com"
-	name = "Dillon Mulroy"
+	email = "klebanov@prisma.io"
+	name = "Igal Klebanov"
 	signingkey = "~/.ssh/key.pub"

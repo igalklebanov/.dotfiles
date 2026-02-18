@@ -59,6 +59,5 @@ cask "tableplus" # database GUI.
 cask "tailscale-app" # tunneling for private access.
 cask "telegram" # whatsapp but for cool kids and terrorists.
 cask "visual-studio-code" # it's like cursor/zed but for boomers like me.
-cask "x" # doom scrolling and demoralization.
 cask "yaak" # postman alternative.
 cask "whatsapp" # real life spam.

@@ -938,16 +938,7 @@ cmd_stow() {
 
 cmd_edit() {
     print_header "Opening dotfiles in editor"
-    
-    local editor="${EDITOR:-nvim}"
-    
-    if command_exists "$editor"; then
-        exec "$editor" "$DOTFILES_DIR"
-    else
-        print_error "Editor '$editor' not found"
-        print_info "Set EDITOR environment variable to specify your preferred editor"
-        return 1
-    fi
+    exec code "$DOTFILES_DIR"
 }
 
 cmd_retry_failed() {

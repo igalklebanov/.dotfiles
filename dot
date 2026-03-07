@@ -1569,7 +1569,7 @@ cmd_help() {
     echo "    stow                Create symlinks for dotfiles using GNU Stow"
     echo "    link                Install dot command globally (create symlink in PATH)"
     echo "    unlink              Uninstall global dot command (remove symlink)"
-    echo "    edit                Open dotfiles in editor"
+    echo "    edit                Open dotfiles in VS Code"
     echo "    help                Show this help message (default)"
     echo ""
     

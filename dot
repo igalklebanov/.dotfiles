@@ -506,27 +506,88 @@ install_opencode() {
     return 1
 }
 
-generate_ssh_key() {
-    print_step "Generating SSH key for GitHub"
+ensure_ssh_config_keychain() {
+    local key_path="$1"
+    local ssh_config="${HOME}/.ssh/config"
     
-    if [[ -f "$GITHUB_KEY_PATH" ]]; then
-        print_success "SSH key already exists at $GITHUB_KEY_PATH"
+    # Ensure config exists with correct permissions
+    mkdir -p "${HOME}/.ssh"
+    chmod 700 "${HOME}/.ssh"
+    touch "$ssh_config"
+    chmod 600 "$ssh_config"
+    
+    # Check if keychain config already present
+    if grep -q "UseKeychain yes" "$ssh_config" 2>/dev/null; then
         return 0
     fi
     
-    print_info "Generating new SSH key..."
-    mkdir -p "${HOME}/.ssh"
-    chmod 700 "${HOME}/.ssh"
+    print_info "Configuring SSH for keychain integration..."
     
-    if ssh-keygen -t ed25519 -C "$GITHUB_EMAIL" -f "$GITHUB_KEY_PATH"; then
-        print_success "SSH key generated successfully"
-        print_info "Add the public key to GitHub:"
-        echo "  pbcopy < ${GITHUB_KEY_PATH}.pub"
-        echo "  Then go to: GitHub > Settings > SSH and GPG keys > New SSH key"
+    # Find insertion point after Include directives
+    if grep -q "^Include " "$ssh_config"; then
+        # Insert after last Include line using sed
+        local tmp_file="${ssh_config}.tmp"
+        sed '/^Include /a\
+\
+Host *\
+  UseKeychain yes\
+  AddKeysToAgent yes\
+  IdentityFile '"$key_path"'
+' "$ssh_config" > "$tmp_file"
+        mv "$tmp_file" "$ssh_config"
+        chmod 600 "$ssh_config"
     else
-        print_error "Failed to generate SSH key"
-        return 1
+        # No Include lines, prepend to file
+        local tmp_file="${ssh_config}.tmp"
+        {
+            echo ""
+            echo "Host *"
+            echo "  UseKeychain yes"
+            echo "  AddKeysToAgent yes"
+            echo "  IdentityFile $key_path"
+            echo ""
+            cat "$ssh_config"
+        } > "$tmp_file"
+        mv "$tmp_file" "$ssh_config"
+        chmod 600 "$ssh_config"
     fi
+    
+    print_success "SSH config updated for keychain integration"
+}
+
+generate_ssh_key() {
+    print_step "Generating SSH key for GitHub"
+    
+    if [[ ! -f "$GITHUB_KEY_PATH" ]]; then
+        print_info "Generating new SSH key..."
+        mkdir -p "${HOME}/.ssh"
+        chmod 700 "${HOME}/.ssh"
+        
+        if ! ssh-keygen -t ed25519 -C "$GITHUB_EMAIL" -f "$GITHUB_KEY_PATH"; then
+            print_error "Failed to generate SSH key"
+            return 1
+        fi
+        print_success "SSH key generated successfully"
+    else
+        print_success "SSH key already exists at $GITHUB_KEY_PATH"
+    fi
+    
+    ensure_ssh_config_keychain "$GITHUB_KEY_PATH"
+    
+    print_info "Adding key to ssh-agent and macOS Keychain..."
+    if ssh-add --apple-use-keychain "$GITHUB_KEY_PATH" 2>/dev/null; then
+        print_success "Key added to ssh-agent and macOS Keychain"
+    else
+        print_warning "Failed to add key to ssh-agent (you may need to add manually)"
+    fi
+    
+    if command_exists pbcopy; then
+        pbcopy < "${GITHUB_KEY_PATH}.pub"
+        print_success "Public key copied to clipboard!"
+    fi
+    
+    print_info "Add the public key to GitHub:"
+    echo "  GitHub > Settings > SSH and GPG keys > New SSH key"
 }
 
 cmd_gen_ssh_key() {

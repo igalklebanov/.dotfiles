@@ -1,4 +1,0 @@
-[user]
-	email = "klebanov@prisma.io"
-	name = "Igal Klebanov"
-	signingkey = "~/.ssh/key.pub"

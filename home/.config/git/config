@@ -42,7 +42,4 @@
 [user]
 	email = "igalklebanov@gmail.com"
 	name = "Igal Klebanov"
-	signingKey = "~/.ssh/key.pub"
-
-[includeIf "gitdir:~/Code/work/"]
-	path = "~/.config/git/work_config"
+	signingKey = "~/.ssh/id_ed25519_github.pub"

@@ -23,7 +23,7 @@ readonly DOTFILES_DIR
 readonly PACKAGES_DIR="${DOTFILES_DIR}/homebrew"
 readonly HOME_DIR="${DOTFILES_DIR}/home"
 readonly GITHUB_EMAIL="igalklebanov@gmail.com"
-readonly GITHUB_KEY_PATH="${HOME}/.ssh/key.pub"
+readonly GITHUB_KEY_PATH="${HOME}/.ssh/id_ed25519_github"
 
 # Progress indicators
 CURRENT_STEP=0

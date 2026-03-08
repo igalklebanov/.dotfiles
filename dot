@@ -555,6 +555,39 @@ Host *\
     print_success "SSH config updated for keychain integration"
 }
 
+ensure_known_hosts() {
+    local host="$1"
+    local known_hosts="${HOME}/.ssh/known_hosts"
+    
+    if [[ -z "$host" ]]; then
+        print_error "ensure_known_hosts: host parameter required"
+        return 1
+    fi
+    
+    # Escape dots for grep pattern
+    local host_pattern="${host//./\\.}"
+    
+    # Check if host already in known_hosts (idempotent)
+    if [[ -f "$known_hosts" ]] && grep -q "^${host_pattern} " "$known_hosts"; then
+        return 0
+    fi
+    
+    print_info "Adding ${host} to known hosts..."
+    
+    # Ensure .ssh directory exists with correct permissions
+    mkdir -p "${HOME}/.ssh"
+    chmod 700 "${HOME}/.ssh"
+    
+    # Fetch host's ed25519 key
+    if ssh-keyscan -t ed25519 "$host" >> "$known_hosts" 2>/dev/null; then
+        chmod 600 "$known_hosts"
+        print_success "${host} host key added"
+    else
+        print_warning "Failed to fetch ${host} host key (check network connection)"
+        print_info "You can add it later with: ssh-keyscan -t ed25519 ${host} >> ~/.ssh/known_hosts"
+    fi
+}
+
 generate_ssh_key() {
     print_step "Generating SSH key for GitHub"
     
@@ -573,6 +606,8 @@ generate_ssh_key() {
     fi
     
     ensure_ssh_config_keychain "$GITHUB_KEY_PATH"
+    
+    ensure_known_hosts "github.com"
     
     print_info "Adding key to ssh-agent and macOS Keychain..."
     if ssh-add --apple-use-keychain "$GITHUB_KEY_PATH" 2>/dev/null; then

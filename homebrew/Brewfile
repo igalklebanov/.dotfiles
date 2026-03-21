@@ -58,6 +58,7 @@ cask "stats" # system monitoring in the menu bar.
 cask "tableplus" # database GUI.
 cask "tailscale-app" # tunneling for private access.
 cask "telegram" # whatsapp but for cool kids and terrorists.
+cask "tidal" # music streaming.
 cask "visual-studio-code" # it's like cursor/zed but for boomers like me.
 cask "yaak" # postman alternative.
 cask "whatsapp" # real life spam.

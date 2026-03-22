@@ -51,6 +51,7 @@ cask "obsidian" # personal note taking.
 cask "orbstack" # docker desktop alternative.
 cask "pearcleaner" # nuke apps.
 cask "proxyman" # intercept and inspect traffic.
+cask "qbittorrent" # torrent client.
 cask "raycast" # one stop shop.
 cask "scroll-reverser" # keep natural scroll for trackpad only.
 cask "shottr" # screenshots.

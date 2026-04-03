@@ -516,10 +516,8 @@ install_socket_firewall() {
     # Create bin directory if it doesn't exist
     mkdir -p "$bin_dir"
     
-    # Check if architecture is correct
+    # Detect architecture and set download URL
     if [[ "$(uname -m)" != "arm64" ]]; then
-        print_warning "This installation is optimized for Apple Silicon (arm64)"
-        print_info "For Intel Macs, use: sfw-free-macos-x86_64"
         download_url="https://github.com/SocketDev/sfw-free/releases/latest/download/sfw-free-macos-x86_64"
     fi
     

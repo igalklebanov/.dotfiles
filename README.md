@@ -78,6 +78,7 @@ dot init --skip-ssh
 ```
 
 **What it does:**
+
 1. Installs Homebrew (if not present)
 2. Installs packages from all Brewfiles
 3. Creates symlinks with GNU Stow
@@ -103,6 +104,7 @@ dot doctor
 ```
 
 Comprehensive diagnostics including:
+
 - ✅ Homebrew installation
 - ✅ Essential tools (git, stow, brew, etc.)
 - ✅ Shell configuration
@@ -153,6 +155,7 @@ dot package remove helm k8s   # Remove helm from k8s bundle only
 ```
 
 **Available contexts:**
+
 - `base` - Core tools (default)
 - `aws` - AWS development tools
 - `ecmascript` - JavaScript/TypeScript runtimes
@@ -218,12 +221,14 @@ The dotfiles use a modular Brewfile architecture, allowing you to install only t
 Core development tools installed on ALL machines:
 
 **CLI Tools:**
+
 - Modern replacements: `bat` (cat), `eza` (ls), `fd` (find), `ripgrep` (grep), `zoxide` (cd)
 - Development: `git`, `gh`, `git-delta`, `lazygit`, `stow`
 - Utilities: `fzf`, `jq`, `yq`, `just`, `direnv`, `starship`
 - Monitoring: `bottom`, `dust`, `tokei`, `hyperfine`
 
 **Applications:**
+
 - Security: 1Password
 - Development: VS Code, OrbStack, GitKraken, TablePlus
 - Productivity: Raycast, Obsidian, DevUtils
@@ -233,6 +238,7 @@ Core development tools installed on ALL machines:
 #### `Brewfile.ecmascript` (JavaScript/TypeScript - 8 packages)
 
 JavaScript and TypeScript runtime management:
+
 - `fnm` - Node.js version manager
 - `bun` - Fast all-in-one JavaScript runtime
 - `deno` - Secure JavaScript/TypeScript runtime
@@ -241,6 +247,7 @@ JavaScript and TypeScript runtime management:
 #### `Brewfile.aws` (AWS Development - 21 packages)
 
 AWS development and operations tooling:
+
 - **Core**: `awscli`, `aws-vault`, `granted` (multi-account auth)
 - **Kubernetes Bridge**: `aws-iam-authenticator`
 - **Local Development**: `localstack`, `awscli-local`, `terraform-local`
@@ -251,6 +258,7 @@ AWS development and operations tooling:
 #### `Brewfile.k8s` (Kubernetes - 11 packages)
 
 Kubernetes development and operations:
+
 - **Core**: `kubectl`, `helm`, `kustomize`
 - **Management**: `k9s` (TUI), `kubectx` (context switching)
 - **Logging**: `stern` (tail logs across pods)
@@ -258,6 +266,7 @@ Kubernetes development and operations:
 #### `Brewfile.terraform` (Infrastructure as Code - 13 packages)
 
 Terraform and IaC tooling:
+
 - **Core**: `tenv` (Terraform/OpenTofu/Terragrunt version manager)
 - **Quality**: `tflint` (linting), `trivy` (security scanning)
 - **Utilities**: `infracost` (cost estimation), `tf-summarize`, `terraformer`
@@ -267,6 +276,7 @@ Terraform and IaC tooling:
 #### `Brewfile.work` (Workplace Tools - 21 packages)
 
 Collaboration and workplace-specific applications:
+
 - **Communication**: Slack, Microsoft Teams
 - **Project Management**: Linear, Notion
 - **Design**: Figma, Miro
@@ -296,6 +306,7 @@ dot package add slack work
 ### Zsh
 
 Modern shell setup with productivity enhancements:
+
 - **Navigation**: `zoxide` (smart cd), `fzf` (fuzzy finder)
 - **Prompt**: Starship (fast, customizable)
 - **Tools**: `direnv` (auto-load environment variables), `fnm` (Node.js version manager)
@@ -304,6 +315,7 @@ Modern shell setup with productivity enhancements:
 ### Git
 
 Professional Git configuration:
+
 - **GPG Signing**: SSH-based commit/tag signing
 - **Editor**: VS Code
 - **Modern Defaults**: Main branch, rebase on pull, auto-prune
@@ -312,6 +324,7 @@ Professional Git configuration:
 ### VS Code
 
 Extension tracking and synchronization:
+
 - Run `dot vscode-sync` to capture currently installed extensions
 - Extensions stored in `vscode/extensions.json`
 - Restore extensions on new machines
@@ -319,12 +332,14 @@ Extension tracking and synchronization:
 ### OpenCode
 
 AI assistant configuration with custom skills:
+
 - Custom skills in `.config/opencode/skill/`
 - Agent configuration and preferences
 
 ### Starship
 
 Fast, customizable shell prompt with:
+
 - Git status
 - Language version indicators
 - Execution time
@@ -341,17 +356,20 @@ Fast, customizable shell prompt with:
 ### First-Time Setup
 
 1. **Clone repository:**
+
    ```bash
    git clone https://github.com/igalklebanov/.dotfiles.git ~/.dotfiles
    cd ~/.dotfiles
    ```
 
 2. **Run installation:**
+
    ```bash
    ./dot init
    ```
 
 3. **Restart shell or source Zsh config:**
+
    ```bash
    source ~/.zshrc
    # Or restart terminal
@@ -415,10 +433,7 @@ brew bundle --file=./homebrew/Brewfile.k8s
 
 ```bash
 # Source Zsh configuration
-source ~/.zshrc
-
-# Or add to PATH manually
-export PATH="$HOME/.dotfiles:$PATH"
+source ~/.zprofile
 ```
 
 **Package installation failures:**

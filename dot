@@ -516,11 +516,6 @@ install_socket_firewall() {
     # Create bin directory if it doesn't exist
     mkdir -p "$bin_dir"
     
-    # Detect architecture and set download URL
-    if [[ "$(uname -m)" != "arm64" ]]; then
-        download_url="https://github.com/SocketDev/sfw-free/releases/latest/download/sfw-free-macos-x86_64"
-    fi
-    
     print_info "Downloading Socket Firewall Free..."
     
     # Download the binary

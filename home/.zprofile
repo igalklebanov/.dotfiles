@@ -1,3 +1,9 @@
+# -- dotfiles --
+
+if [[ ":$PATH:" != *":$HOME/.dotfiles:"* ]]; then
+    export PATH="$HOME/.dotfiles:$PATH"
+fi
+
 # -- homebrew --
 
 eval "$(/opt/homebrew/bin/brew shellenv zsh)"
@@ -17,6 +23,8 @@ fi
 
 export EDITOR='code --wait'
 export VISUAL='code --wait'
+
+# -- orbstack --
 
 # Added by OrbStack: command-line tools and integration
 # This won't be added again if you remove it.

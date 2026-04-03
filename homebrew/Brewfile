@@ -46,7 +46,7 @@ cask "hammerspoon" # macOS scripting.
 cask "iina" # media player.
 cask "jordanbaird-ice" # menu bar icon hider.
 cask "monodraw" # draw ascii diagrams.
-cask "ngrok" # test webhooks.
+# cask "ngrok" # test webhooks.
 cask "obsidian" # personal note taking.
 cask "orbstack" # docker desktop alternative.
 cask "pearcleaner" # nuke apps.

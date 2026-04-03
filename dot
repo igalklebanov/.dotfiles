@@ -776,16 +776,62 @@ EOF
 
 # Command functions
 
+install_vscode_extensions() {
+    print_step "Installing VS Code extensions"
+    
+    if ! command_exists code; then
+        print_warning "VS Code not installed, skipping extensions"
+        return 0
+    fi
+    
+    local extensions_file="${DOTFILES_DIR}/vscode/extensions.json"
+    
+    if [[ ! -f "$extensions_file" ]]; then
+        print_info "No extensions.json found, skipping"
+        return 0
+    fi
+    
+    if ! command_exists jq; then
+        print_warning "jq not installed, skipping VS Code extensions"
+        print_info "Install jq to enable extension sync: brew install jq"
+        return 0
+    fi
+    
+    print_info "Installing extensions from extensions.json..."
+    
+    local installed=0
+    local failed=0
+    
+    while IFS= read -r extension; do
+        print_info "Installing: $extension"
+        if code --install-extension "$extension" --force 2>/dev/null; then
+            ((++installed))
+        else
+            print_warning "Failed to install: $extension"
+            ((++failed))
+        fi
+    done < <(jq -r '.[]' "$extensions_file")
+    
+    if [[ $installed -gt 0 ]]; then
+        print_success "Installed $installed VS Code extensions"
+    fi
+    
+    if [[ $failed -gt 0 ]]; then
+        print_warning "$failed extensions failed to install"
+    fi
+}
+
 cmd_init() {
     print_header "Initializing dotfiles"
     
-    TOTAL_STEPS=6
+    TOTAL_STEPS=7
     CURRENT_STEP=0
     
     # Run all installation steps
     install_homebrew || return 1
     use_brewfiles || return 1
     stow_dotfiles || return 1
+    install_vscode_extensions || print_warning "VS Code extension install failed (continuing)"
     setup_raycast || print_warning "Setting up Raycast failed (continuing)"
     install_opencode || print_warning "OpenCode installation failed (continuing)"
     
@@ -1035,6 +1081,38 @@ cmd_stow() {
 cmd_edit() {
     print_header "Opening dotfiles in editor"
     exec code "$DOTFILES_DIR"
+}
+
+cmd_vscode_sync() {
+    print_header "Syncing VS Code extensions"
+    
+    if ! command_exists code; then
+        print_error "VS Code not installed"
+        return 1
+    fi
+    
+    local extensions_file="${DOTFILES_DIR}/vscode/extensions.json"
+    
+    print_info "Fetching installed extensions..."
+    local extensions
+    extensions=$(code --list-extensions 2>/dev/null | sort)
+    
+    if [[ -z "$extensions" ]]; then
+        print_warning "No extensions installed"
+        return 0
+    fi
+    
+    local count
+    count=$(echo "$extensions" | wc -l | tr -d ' ')
+    
+    print_info "Found $count extensions"
+    
+    # Create JSON array
+    mkdir -p "$(dirname "$extensions_file")"
+    echo "$extensions" | jq -R . | jq -s . > "$extensions_file"
+    
+    print_success "Synced $count extensions to vscode/extensions.json"
+    print_info "Commit these changes to track extensions across machines"
 }
 
 cmd_retry_failed() {
@@ -1662,6 +1740,7 @@ cmd_help() {
     echo "    check-packages      Check which packages are installed/missing"
     echo "    retry-failed        Retry failed package installations"
     echo "    gen-ssh-key         Generate SSH key for GitHub/GitLab with email"
+    echo "    vscode-sync         Sync installed VS Code extensions to extensions.json"
     echo "    stow                Create symlinks for dotfiles using GNU Stow"
     echo "    link                Install dot command globally (create symlink in PATH)"
     echo "    unlink              Uninstall global dot command (remove symlink)"
@@ -1688,6 +1767,7 @@ cmd_help() {
     echo "    ${SCRIPT_NAME} retry-failed              # Retry any failed installations"
     echo "    ${SCRIPT_NAME} gen-ssh-key               # Generate SSH key (prompts for email)"
     echo "    ${SCRIPT_NAME} gen-ssh-key user@github.com  # Generate SSH key with email"
+    echo "    ${SCRIPT_NAME} vscode-sync               # Update extensions.json from installed extensions"
     echo "    ${SCRIPT_NAME} stow                      # Create symlinks for dotfiles"
     echo "    ${SCRIPT_NAME} link                      # Install dot command globally in PATH"
     echo ""
@@ -1757,6 +1837,9 @@ main() {
             ;;
         gen-ssh-key)
             cmd_gen_ssh_key "$@"
+            ;;
+        vscode-sync)
+            cmd_vscode_sync "$@"
             ;;
         stow)
             cmd_stow "$@"

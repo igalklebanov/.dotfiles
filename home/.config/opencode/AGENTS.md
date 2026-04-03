@@ -24,10 +24,9 @@ you cut will be cut again.
 - Write tests that verify semantically correct behavior
 - **Failing tests are acceptable** when they expose genuine bugs and test correct behavior
 
-## Git, jj,VCS, SCM,Pull Requests, Commits
+## Git, VCS, SCM, Pull Requests, Commits
 
-- **ALWAYS check for `.jj/` dir before ANY VCS command** - if present, use jj not git
-- **Never** add Claude to attribution or as a contributor PRs, commits, messages, or PR descriptions
+- **Never** add Claude to attribution or as a contributor in PRs, commits, messages, or PR descriptions
 - **gh CLI available** for GitHub operations (PRs, issues, etc.)
 - **glab CLI available** for GitLab operations (PRs, issues, etc.)
 

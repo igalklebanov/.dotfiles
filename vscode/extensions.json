@@ -1,5 +1,8 @@
 [
   "esbenp.prettier-vscode",
+  "oven.bun-vscode",
+  "socketsecurity.vscode-socket-security",
+  "tamasfe.even-better-toml",
   "typescriptteam.native-preview",
   "unifiedjs.vscode-mdx",
   "vscode-icons-team.vscode-icons"

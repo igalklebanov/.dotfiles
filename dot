@@ -506,6 +506,64 @@ install_opencode() {
     return 1
 }
 
+install_socket_firewall() {
+    print_step "Installing Socket Firewall Free"
+    
+    local bin_dir="${HOME}/.local/bin"
+    local sfw_path="${bin_dir}/sfw"
+    local download_url="https://github.com/SocketDev/sfw-free/releases/latest/download/sfw-free-macos-arm64"
+    
+    # Create bin directory if it doesn't exist
+    mkdir -p "$bin_dir"
+    
+    # Check if architecture is correct
+    if [[ "$(uname -m)" != "arm64" ]]; then
+        print_warning "This installation is optimized for Apple Silicon (arm64)"
+        print_info "For Intel Macs, use: sfw-free-macos-x86_64"
+        download_url="https://github.com/SocketDev/sfw-free/releases/latest/download/sfw-free-macos-x86_64"
+    fi
+    
+    print_info "Downloading Socket Firewall Free..."
+    
+    # Download the binary
+    if curl -fsSL -o "$sfw_path" "$download_url"; then
+        print_success "Downloaded successfully"
+    else
+        print_error "Failed to download Socket Firewall Free"
+        print_info "Try manually: curl -L -o ~/.local/bin/sfw $download_url"
+        return 1
+    fi
+    
+    # Remove macOS quarantine attribute
+    print_info "Removing quarantine attribute..."
+    if xattr -dr com.apple.quarantine "$sfw_path" 2>/dev/null; then
+        print_success "Quarantine removed"
+    else
+        print_warning "Could not remove quarantine (may not be needed)"
+    fi
+    
+    # Make executable
+    chmod +x "$sfw_path"
+    
+    # Verify installation
+    print_info "Verifying installation..."
+    if "$sfw_path" --help >/dev/null 2>&1; then
+        print_success "Socket Firewall Free installed successfully"
+        
+        # Check if ~/.local/bin is in PATH
+        if ! echo "$PATH" | grep -q "${bin_dir}"; then
+            print_warning "~/.local/bin is not in your PATH"
+            print_info "Add this to your shell profile: export PATH=\"\$HOME/.local/bin:\$PATH\""
+        fi
+        
+        print_info "Usage: sfw npm install, sfw pip install, sfw cargo fetch"
+        return 0
+    else
+        print_error "Installation verification failed"
+        return 1
+    fi
+}
+
 ensure_ssh_config_keychain() {
     local key_path="$1"
     local ssh_config="${HOME}/.ssh/config"
@@ -824,7 +882,7 @@ install_vscode_extensions() {
 cmd_init() {
     print_header "Initializing dotfiles"
     
-    TOTAL_STEPS=7
+    TOTAL_STEPS=8
     CURRENT_STEP=0
     
     # Run all installation steps
@@ -834,6 +892,7 @@ cmd_init() {
     install_vscode_extensions || print_warning "VS Code extension install failed (continuing)"
     setup_raycast || print_warning "Setting up Raycast failed (continuing)"
     install_opencode || print_warning "OpenCode installation failed (continuing)"
+    install_socket_firewall || print_warning "Socket Firewall Free installation failed (continuing)"
     
     if [[ "${SKIP_SSH:-}" != "true" ]]; then
         generate_ssh_key || print_warning "SSH key generation failed (continuing)"
@@ -943,6 +1002,28 @@ cmd_doctor() {
         print_warning "OpenCode not installed"
         print_info "Install with: curl -fsSL https://opencode.ai/install | bash"
         print_info "Or run 'dot init' to install automatically"
+    fi
+    
+    # Check Socket Firewall Free
+    if command_exists sfw; then
+        print_success "Socket Firewall Free (sfw) installed"
+        
+        # Try to get version info if available
+        local sfw_path
+        sfw_path=$(command -v sfw)
+        print_info "Location: $sfw_path"
+        
+        # Verify it's functional
+        if sfw --help >/dev/null 2>&1; then
+            print_success "Socket Firewall Free is functional"
+            print_info "Usage: sfw npm install, sfw pip install, sfw cargo fetch"
+        else
+            print_warning "Socket Firewall Free may not be working correctly"
+        fi
+    else
+        print_warning "Socket Firewall Free (sfw) not installed"
+        print_info "Install with: 'dot init' or manually download from GitHub releases"
+        print_info "Protects against malicious packages in real-time"
     fi
     
     # Check symlinks

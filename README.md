@@ -11,6 +11,7 @@ This repository contains my personal development environment configuration, mana
 - 🚀 **One-command setup** - Complete development environment in minutes
 - 📦 **Modular package system** - Separate Brewfiles for AWS, K8s, Terraform, ECMAScript, and work tools
 - 🔄 **Resilient package management** - Continues installation even if packages fail
+- 🛡️ **Security-first** - Socket Security Firewall protects against malicious packages
 - 🔍 **Health monitoring** - Comprehensive environment diagnostics
 - 🛠️ **VS Code integration** - Track and sync installed extensions
 
@@ -82,8 +83,9 @@ dot init --skip-ssh
 1. Installs Homebrew (if not present)
 2. Installs packages from all Brewfiles
 3. Creates symlinks with GNU Stow
-4. Generates SSH key for GitHub (optional)
-5. Sets up shell configuration
+4. Installs Socket Security Firewall Free for package protection
+5. Generates SSH key for GitHub (optional)
+6. Sets up shell configuration
 
 ### Maintenance Commands
 
@@ -107,6 +109,7 @@ Comprehensive diagnostics including:
 
 - ✅ Homebrew installation
 - ✅ Essential tools (git, stow, brew, etc.)
+- ✅ Socket Security Firewall installation and functionality
 - ✅ Shell configuration
 - ✅ PATH configuration
 - ⚠️ Broken symlinks detection
@@ -310,6 +313,7 @@ Modern shell setup with productivity enhancements:
 - **Navigation**: `zoxide` (smart cd), `fzf` (fuzzy finder)
 - **Prompt**: Starship (fast, customizable)
 - **Tools**: `direnv` (auto-load environment variables), `fnm` (Node.js version manager)
+- **Security**: Socket Firewall wraps npm/yarn/pnpm package managers
 - **Aliases**: Modern tool replacements (bat, eza, ripgrep, fd)
 
 ### Git

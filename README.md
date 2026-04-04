@@ -35,29 +35,31 @@ After installation, the `dot` command will be available globally. Run `dot --hel
 
 ```
 ~/.dotfiles/
-├── dot                    # Main CLI tool (Bash)
-├── home/                  # Configuration files (stowed to ~)
+├── dot                      # Main CLI tool (Bash)
+├── home/                    # Configuration files (stowed to ~)
 │   ├── .config/
-│   │   ├── git/          # Git configuration
-│   │   ├── gh/           # GitHub CLI configuration
-│   │   ├── opencode/     # OpenCode AI configuration
-│   │   ├── ghostty/      # Ghostty terminal configuration
-│   │   ├── raycast/      # Raycast launcher configuration
-│   │   └── starship.toml # Starship prompt configuration
-│   ├── .zshrc            # Zsh shell configuration
-│   ├── .zprofile         # Zsh profile
-│   └── .npmrc            # npm configuration
-├── homebrew/             # Package management
-│   ├── Brewfile          # Base packages (all machines)
-│   ├── Brewfile.aws      # AWS development tools
+│   │   ├── git/            # Git configuration
+│   │   ├── gh/             # GitHub CLI configuration
+│   │   ├── opencode/       # OpenCode AI configuration
+│   │   ├── ghostty/        # Ghostty terminal configuration
+│   │   ├── raycast/        # Raycast launcher configuration
+│   │   ├── ripgrep/        # Ripgrep configuration
+│   │   └── starship.toml   # Starship prompt configuration
+│   ├── Library/            # macOS Library preferences
+│   ├── .zshrc              # Zsh shell configuration
+│   ├── .zprofile           # Zsh profile
+│   ├── .npmrc              # npm configuration
+│   └── .bunfig.toml        # Bun configuration
+├── homebrew/               # Package management
+│   ├── Brewfile            # Base packages (all machines)
+│   ├── Brewfile.aws        # AWS development tools
 │   ├── Brewfile.ecmascript # JavaScript/TypeScript runtimes
-│   ├── Brewfile.k8s      # Kubernetes tooling
-│   ├── Brewfile.terraform # Infrastructure as Code tools
-│   └── Brewfile.work     # Workplace collaboration tools
+│   ├── Brewfile.k8s        # Kubernetes tooling
+│   ├── Brewfile.terraform  # Infrastructure as Code tools
+│   └── Brewfile.work       # Workplace collaboration tools
 ├── vscode/
-│   └── extensions.json   # VS Code extensions tracking
-├── backups/              # Timestamped configuration backups
-└── README.md             # This file
+│   └── extensions.json     # VS Code extensions tracking
+└── README.md               # This file
 ```
 
 ## The `dot` CLI Tool

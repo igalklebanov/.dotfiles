@@ -355,7 +355,7 @@ Fast, customizable shell prompt with:
 
 ### Prerequisites
 
-- macOS (Intel or Apple Silicon)
+- macOS (Apple Silicon only)
 - Internet connection
 - Terminal access
 

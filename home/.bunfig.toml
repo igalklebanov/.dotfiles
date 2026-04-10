@@ -4,7 +4,7 @@ file = false
 
 [install]
 # never auto-install dependencies.
-auto = false
+auto = "disable"
 # whether to set an exact version in `package.json`.
 exact = true
 # only install package versions published at least 1 days ago (in seconds).

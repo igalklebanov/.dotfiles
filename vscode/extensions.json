@@ -1,5 +1,9 @@
 [
+  "christian-kohler.path-intellisense",
+  "denoland.vscode-deno",
+  "eamodio.gitlens",
   "esbenp.prettier-vscode",
+  "github.vscode-github-actions",
   "oven.bun-vscode",
   "socketsecurity.vscode-socket-security",
   "tamasfe.even-better-toml",

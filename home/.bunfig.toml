@@ -7,7 +7,5 @@ file = false
 auto = false
 # whether to set an exact version in `package.json`.
 exact = true
-# bun install will not update `bun.lock`.
-frozenLockfile = true
 # only install package versions published at least 1 days ago (in seconds).
 minimumReleaseAge = 86400

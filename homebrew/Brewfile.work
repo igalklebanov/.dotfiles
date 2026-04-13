@@ -3,7 +3,7 @@
 cask_args appdir: "/Applications"
 
 brew "cloudflared" # free public URLs for demos/preview environments.
-brew "doppler" # secret manager. hope workplaces use it.
+# brew "doppler" # secret manager. hope workplaces use it.
 
 cask "1password" # auth manager.
 cask "1password-cli" # auth manager CLI.
@@ -18,4 +18,4 @@ cask "miro" # in case there's "retro" or "brainstorming".
 cask "notion" # in case there's a "product".
 cask "slack" # spam spam spam.
 cask "tailscale-app" # tunnel into infra.
-cask "teleport" # tunnel into infra.
+# cask "teleport" # tunnel into infra.

@@ -17,6 +17,7 @@ brew "fzf" # fuzzy finder.
 brew "gh" # GitHub official CLI.
 brew "git" # in linus we trust.
 brew "git-delta" # better Git diffs.
+brew "git-lfs" # large file versioning.
 brew "hyperfine" # benchmark scripts.
 brew "jq" # query JSON objects.
 brew "just" # modern command runner.

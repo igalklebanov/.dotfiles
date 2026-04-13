@@ -7,6 +7,10 @@ homebrew/failed_packages_*.txt
 tmp/
 .DS_STORE
 
+# AWS
+
+home/.aws/config
+
 # Python
 __pycache__/
 *.pyc

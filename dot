@@ -278,6 +278,21 @@ use_brewfiles() {
         
         	print_success "Successfully installed $installed_count packages"
             fi
+            
+            # Install AWS CLI from official web installer (not brew)
+            if [[ "$context" == "aws" ]]; then
+                print_info "Installing AWS CLI from official installer..."
+                local aws_cli_pkg
+                aws_cli_pkg=$(mktemp /tmp/AWSCLIV2.XXXXXX.pkg)
+                if curl -sSL "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "$aws_cli_pkg"; then
+                    sudo installer -pkg "$aws_cli_pkg" -target /
+                    rm -f "$aws_cli_pkg"
+                    print_success "AWS CLI installed from official installer"
+                else
+                    print_warning "Failed to download AWS CLI installer"
+                    rm -f "$aws_cli_pkg"
+                fi
+            fi
         else
             print_info "Skipping $context."
         fi

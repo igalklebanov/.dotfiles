@@ -3,7 +3,6 @@
 cask_args appdir: "/Applications"
 
 brew "aws-iam-authenticator" # AWS<->`kubectl` credentials bridge.
-brew "awscli" # AWS CLI - used in most workplaces.
 brew "awscli-local" # AWS CLI, but for `localstack`.
 brew "aws-vault" # AWS secret manager.
 brew "cloud-nuke" # nuke test resources. `aws-nuke` alternative.

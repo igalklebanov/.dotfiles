@@ -9,7 +9,7 @@ tmp/
 
 # AWS
 
-home/.aws/config
+home/.aws
 
 # Python
 __pycache__/

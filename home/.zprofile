@@ -23,6 +23,14 @@ if [[ ":$PATH:" != *":$HOME/.opencode/bin:"* ]]; then
     export PATH="$HOME/.opencode/bin:$PATH"
 fi
 
+# -- pnpm --
+
+export PNPM_HOME="/Users/igalklebanov/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+
 # -- vs code --
 
 export EDITOR='code --wait'

@@ -17,6 +17,10 @@ alias top='btop'
 alias tree='eza --tree --icons'
 alias yarn='sfw yarn'
 
+if [ -f "~/.zshrc.work" ]; then
+    source ~/.zshrc.work
+fi
+
 # --- zsh ---
 
 autoload -Uz compinit && compinit

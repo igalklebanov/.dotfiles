@@ -10,6 +10,7 @@
 [core]
 	editor = "code"
 	fsmonitor = true
+	hooksPath = /dev/null
 
 [fetch]
 	prune = true

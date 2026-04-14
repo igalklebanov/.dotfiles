@@ -23,4 +23,12 @@ home/.config/raycast/
 
 home/.config/qBittorrent/
 
+# VS Code application data
+home/Library/Application Support/Code/*
+!home/Library/Application Support/Code/User
+home/Library/Application Support/Code/User/*
+!home/Library/Application Support/Code/User/snippets
+!home/Library/Application Support/Code/User/keybindings.json
+!home/Library/Application Support/Code/User/settings.json
+
 home/.config/configstore/update-notifier-\@docusaurus/

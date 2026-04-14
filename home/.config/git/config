@@ -43,3 +43,5 @@
 	email = "igalklebanov@gmail.com"
 	name = "Igal Klebanov"
 	signingKey = "~/.ssh/id_ed25519_github.pub"
+[credential]
+	helper = osxkeychain

@@ -21,5 +21,6 @@
   "window.autoDetectColorScheme": true,
   "workbench.preferredDarkColorTheme": "Dark 2026",
   "workbench.preferredLightColorTheme": "Light 2026",
-  "workbench.preferredHighContrastColorTheme": "Default High Contrast"
+  "workbench.preferredHighContrastColorTheme": "Default High Contrast",
+  "editor.letterSpacing": 0.5
 }

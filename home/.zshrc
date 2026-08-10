@@ -17,7 +17,7 @@ alias top='btop'
 alias tree='eza --tree --icons'
 alias yarn='sfw yarn'
 
-if [ -f "~/.zshrc.work" ]; then
+if [ -f ~/.zshrc.work ]; then
     source ~/.zshrc.work
 fi
 
@@ -45,4 +45,5 @@ source <(fzf --zsh)
 
 # --- zoxide ---
 
+export _ZO_DOCTOR=0
 eval "$(zoxide init zsh --cmd cd)"

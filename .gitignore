@@ -32,3 +32,5 @@ home/Library/Application Support/Code/User/*
 !home/Library/Application Support/Code/User/settings.json
 
 home/.config/configstore/update-notifier-\@docusaurus/
+
+home/.zshrc.work

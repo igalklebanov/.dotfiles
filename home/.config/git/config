@@ -10,7 +10,7 @@
 [core]
 	editor = "code"
 	fsmonitor = true
-	hooksPath = /dev/null
+	# hooksPath = /dev/null
 
 [fetch]
 	prune = true
@@ -23,7 +23,7 @@
 	smudge = "git-lfs smudge -- %f"
 
 [gpg]
-	format = "ssh"
+	format = ssh
 
 [init]
 	defaultBranch = "main"
@@ -44,5 +44,11 @@
 	email = "igalklebanov@gmail.com"
 	name = "Igal Klebanov"
 	signingKey = "~/.ssh/id_ed25519_github.pub"
-[credential]
-	helper = osxkeychain
+# [credential]
+# 	helper = osxkeychain
+[credential "https://github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
